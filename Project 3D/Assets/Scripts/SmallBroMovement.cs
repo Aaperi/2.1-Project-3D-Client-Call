@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Testing : MonoBehaviour {
+public class SmallBroMovement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
