@@ -4,7 +4,9 @@ using System.Collections;
 public class FireAttackScript : MonoBehaviour {
     //Components
 	[SerializeField]
-	GameObject prefab;
+	GameObject prefabFire;
+	[SerializeField]
+	GameObject prefabWater;
     [HideInInspector]
     public Transform torchTransform;
 	GameObject torch;
@@ -31,13 +33,27 @@ public class FireAttackScript : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.K)) {
                 GetComponentInParent<Rigidbody>().velocity = Vector3.zero;
                 smallBroMovement.enabled = false;
-                GameObject go = Instantiate(prefab, this.transform.position - this.transform.forward * 1.5f, this.transform.rotation) as GameObject;
-                go.transform.parent = this.transform;
-                Destroy(go, 1.7f);
-                nextFireTime = Time.time + delayFire;
+
+                
+             
                 if (isInRange) {
-                    torch.GetComponent<TorchScript>().SetFire();
-                }
+					if (!torch.GetComponent<TorchScript>().isLit) {
+						GameObject go = Instantiate(prefabFire, this.transform.position - this.transform.forward * 1.5f, this.transform.rotation) as GameObject;
+						go.transform.parent = this.transform;
+						Destroy(go, 1.7f);
+    	                torch.GetComponent<TorchScript>().SetFire();
+					}else {
+						GameObject go = Instantiate(prefabWater, this.transform.position - this.transform.forward * 1.5f, this.transform.rotation) as GameObject;
+						go.transform.parent = this.transform;
+						Destroy(go, 1.7f);
+						torch.GetComponent<TorchScript>().ExtinguishFire();
+					}
+                } else{
+					GameObject go = Instantiate(prefabFire, this.transform.position - this.transform.forward * 1.5f, this.transform.rotation) as GameObject;
+					go.transform.parent = this.transform;
+					Destroy(go, 1.7f);
+				}
+				nextFireTime = Time.time + delayFire;
             }
         }
         
