@@ -13,6 +13,8 @@ public class SmallBroMovement : MonoBehaviour
     public float rotationSpeed = 50;
     private Quaternion targetRotation;
 
+    
+
     void Start()
     {
         cam = Camera.main;
@@ -53,7 +55,9 @@ public class SmallBroMovement : MonoBehaviour
        
         // We apply gravity manually for more tuning control
         rigibody.AddForce(new Vector3(0, -gravity * rigibody.mass, 0));
+
+
     }
 
-
+   
 }

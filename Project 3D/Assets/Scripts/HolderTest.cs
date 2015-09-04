@@ -47,10 +47,10 @@ public class HolderTest : MonoBehaviour {
             Debug.Log("Velocity Set. Holding a player ATM.");
             if (Input.GetKeyDown(KeyCode.F))
             {
-                magicGuyRigidBody.AddForce(Vector3.forward * 8000f + Vector3.up * 1000f);
+                magicGuyRigidBody.AddForce(transform.forward * 500f + transform.up * 250f);
                 magicGuyRigidBody.useGravity = true;
                 holdingPlayer = false;
-                magicGuy.GetComponent<SmallBroMovement>().enabled = true;
+              
 
             }
         }
@@ -60,7 +60,6 @@ public class HolderTest : MonoBehaviour {
             {
                 magicGuyRigidBody.useGravity = true;
                 holdingPlayer = false;
-                magicGuy.GetComponent<SmallBroMovement>().enabled = true;
             }
         }
 
