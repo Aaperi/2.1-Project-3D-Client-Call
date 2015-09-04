@@ -14,4 +14,9 @@ public class TorchScript : MonoBehaviour {
 		particles.SetActive (true);
         isLit = true;
 	}
+
+	public void ExtinguishFire() {
+		particles.SetActive (false);
+		isLit = false;
+	}
 }
