@@ -5,12 +5,11 @@ public class FireAttackScript : MonoBehaviour {
 
 	[SerializeField]
 	GameObject prefab;
-
+    [HideInInspector]
+    public Transform torchTransform;
 	Vector3 rayDirection;
-	float VisionAngle = 135f;
+	float VisionAngle = 55;
 
-	// Use this for initialization
-	
 	// Update is called once per frame
 	void Update () {
 	
@@ -18,7 +17,6 @@ public class FireAttackScript : MonoBehaviour {
 			GameObject go = Instantiate(prefab,this.transform.position+  this.transform.forward * 0.5f, this.transform.rotation) as GameObject;
 			go.transform.parent = this.transform;
 			Destroy(go,1.7f);	
-	
 			Hit();
 	
 
@@ -28,14 +26,14 @@ public class FireAttackScript : MonoBehaviour {
 
 	private void Hit() {
 		RaycastHit hit;
-		rayDirection = transform.forward * 10 - transform.position;
-		Debug.Log("hello");
-		Debug.DrawLine ( transform.forward,transform.position, Color.yellow);
+		rayDirection = torchTransform.position - transform.position;
 		
-		if ((Vector3.Angle(rayDirection, transform.forward)) <= VisionAngle ) {
-			if (Physics.Raycast(transform.position, rayDirection, out hit, 4f)) {
+		
+		
+		if ((Vector3.Angle(rayDirection, transform.forward)) <= VisionAngle * 0.5f) {
+			if (Physics.Raycast(transform.position, rayDirection, out hit, 3.5f)) {
 				if (hit.transform.CompareTag("Torch")){
-					Debug.Log("hoi");
+					Debug.Log("LIT UP !");
 					hit.transform.GetComponent<TorchScript>().SetFire();
 				}
 			}
