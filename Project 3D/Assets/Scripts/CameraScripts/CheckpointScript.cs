@@ -3,9 +3,6 @@ using System.Collections;
 
 public class CheckpointScript : MonoBehaviour {
 
-    public Transform torchTransform;
-
-
     GameObject small;
 	GameObject big;
 
@@ -21,7 +18,6 @@ public class CheckpointScript : MonoBehaviour {
 	// Update is called once per frame
 	void OnTriggerEnter (Collider hit) {
 		small.GetComponent<CameraControlScript> ().spawn = newSpawnPointSmall;
-        small.GetComponent<FireAttackScript>().torchTransform = torchTransform;
 		big.GetComponent<CameraControlScript> ().spawn = newSpawnPointBig;
 		Camera.main.GetComponent<CameraSpline> ().MoveToNext ();
 		this.gameObject.SetActive (false);
