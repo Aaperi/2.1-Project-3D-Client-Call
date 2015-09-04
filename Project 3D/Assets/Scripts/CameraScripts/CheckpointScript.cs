@@ -12,20 +12,13 @@ public class CheckpointScript : MonoBehaviour {
 	void Start () {
 		small = GameObject.FindGameObjectWithTag ("Small");
 		big = GameObject.FindGameObjectWithTag ("Big");
-	
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	}
-
 	void OnTriggerEnter (Collider hit) {
 		small.GetComponent<CameraControlScript> ().spawn = newSpawnPointSmall;
 		big.GetComponent<CameraControlScript> ().spawn = newSpawnPointBig;
 		Camera.main.GetComponent<CameraSpline> ().MoveToNext ();
-		hit.gameObject.transform.position += Vector3.right * 3;
 		this.gameObject.SetActive (false);
-
-
 	}
 }
