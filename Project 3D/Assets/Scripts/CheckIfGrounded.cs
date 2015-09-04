@@ -4,7 +4,12 @@ using System.Collections;
 public class CheckIfGrounded : MonoBehaviour {
 
     public bool Grounded = true;
-    
+    menuScript menuScript;
+
+    void Start()
+    {
+        menuScript = GameObject.FindObjectOfType(typeof(menuScript)) as menuScript;
+    }
 
 	// Update is called once per frame
 	void Update () {
@@ -27,7 +32,7 @@ public class CheckIfGrounded : MonoBehaviour {
             Grounded = false;
 
         }
-        if (Grounded && GetComponentInChildren<FireAttackScript>().canShoot()) GetComponent<SmallBroMovement>().enabled = true;
+        if (Grounded && GetComponentInChildren<FireAttackScript>().canShoot() && !menuScript.canvasOn && !menuScript.paused) GetComponent<SmallBroMovement>().enabled = true;
         Debug.Log("SMALL BRO ===>>>>" + Grounded);
     }
 }
